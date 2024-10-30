@@ -1,11 +1,15 @@
 package com.github.curriculeon.arcade;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by leon on 7/21/2020.
  * `ArcadeAccountManager` stores, manages, and retrieves `ArcadeAccount` objects
  * it is advised that every instruction in this class is logged
  */
 public class ArcadeAccountManager {
+    List<ArcadeAccount> accounts = new ArrayList<>();
     /**
      * @param accountName     name of account to be returned
      * @param accountPassword password of account to be returned
@@ -28,8 +32,9 @@ public class ArcadeAccountManager {
     public ArcadeAccount createAccount(String accountName, String accountPassword) {
         String currentMethodName = new Object(){}.getClass().getEnclosingMethod().getName();
         String currentClassName = getClass().getName();
-        String errorMessage = "Method with name [ %s ], defined in class with name [ %s ] has  not yet been implemented";
-        throw new RuntimeException(String.format(errorMessage, currentMethodName, currentClassName));
+        return new ArcadeAccount(accountName, accountPassword);
+//        String errorMessage = "Method with name [ %s ], defined in class with name [ %s ] has  not yet been implemented";
+//        throw new RuntimeException(String.format(errorMessage, currentMethodName, currentClassName));
     }
 
     /**
