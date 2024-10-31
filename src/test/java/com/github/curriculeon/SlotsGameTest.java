@@ -60,26 +60,6 @@ public class SlotsGameTest {
         Assert.assertFalse(result);
     }
 
-//    @Test
-//    public final void testJackpot(){
-//        //given an arraylist of size 5 with all elements = 7
-//        //creates an ArrayList with random numbers but using all 7's for testing purposes
-//        ArrayList<Integer> arrayList = new ArrayList<>(Arrays.asList(7, 7, 7, 7, 7));
-//        boolean condition = slots.checkForjackpot(arrayList);
-//        //return boolean
-//        Assert.assertTrue(condition, "All numbers in ArrayList are 7's");
-//    }
-//
-//    @Test
-//    public final void testJackpot2(){
-//        //given an arraylist of size 5 with all elements = 7
-//        //creates an ArrayList with random numbers but using all 7's for testing purposes
-//        ArrayList<Integer> arrayList = new ArrayList<>(Arrays.asList(5, 5, 5, 5, 5));
-//        boolean condition = slots.checkForjackpot(arrayList);
-//        //return boolean
-//        Assert.assertFalse(condition, "All numbers in ArrayList are 5's");
-//    }
-
     @Test
     public final void payOutFor3Test(){
         //return int times 15
