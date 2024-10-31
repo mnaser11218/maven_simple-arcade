@@ -101,7 +101,7 @@ public class NumberGuessGame implements GameInterface {
 
 
     public void run(){
-
+        System.out.println(this.players.get(0).getArcadeAccount().getAccountName());
 
         //implementing two players:
 

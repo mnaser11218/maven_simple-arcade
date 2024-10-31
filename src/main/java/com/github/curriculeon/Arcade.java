@@ -16,17 +16,18 @@ import com.github.curriculeon.utils.IOConsole;
  */
 public class Arcade implements Runnable {
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
+    private final ArcadeAccountManager arcadeAccountManager = new ArcadeAccountManager();
+   private ArcadeAccount arcadeAccount;
 
     @Override
     public void run() {
         String arcadeDashBoardInput;
-        ArcadeAccountManager arcadeAccountManager = new ArcadeAccountManager();
         do {
             arcadeDashBoardInput = getArcadeDashboardInput();
             if ("select-game".equals(arcadeDashBoardInput)) {
                 String accountName = console.getStringInput("Enter your account name:");
                 String accountPassword = console.getStringInput("Enter your account password:");
-                ArcadeAccount arcadeAccount = arcadeAccountManager.getAccount(accountName, accountPassword);
+                arcadeAccount = arcadeAccountManager.getAccount(accountName, accountPassword);
                 boolean isValidLogin = arcadeAccount != null;
                 if (isValidLogin) {
                     String gameSelectionInput = getGameSelectionInput().toUpperCase();
@@ -77,6 +78,7 @@ public class Arcade implements Runnable {
     private void play(Object gameObject, Object playerObject) {
         GameInterface game = (GameInterface)gameObject;
         PlayerInterface player = (PlayerInterface)playerObject;
+        player.setArcadeAccount(arcadeAccount);
         game.add(player);
         game.run();
     }
