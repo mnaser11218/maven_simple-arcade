@@ -238,6 +238,8 @@ public class SlotsGame implements GameInterface {
 
     @Override
     public void run() {
+        System.out.println("Welcome " + this.players.get(0).getArcadeAccount().getAccountName());
+
         int startGambling = 0;
         System.out.println("\u001B[0mYour Current Balance is: \u001B[32m" + userBalance + "\u001B[0m");
 

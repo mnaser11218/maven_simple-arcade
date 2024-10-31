@@ -82,4 +82,13 @@ public class Arcade implements Runnable {
         game.add(player);
         game.run();
     }
+
+    @Override
+    public String toString() {
+        return "Arcade{" +
+                "console=" + console +
+                ", arcadeAccountManager=" + arcadeAccountManager +
+                ", arcadeAccount=" + arcadeAccount +
+                '}';
+    }
 }
