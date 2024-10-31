@@ -6,6 +6,7 @@ import com.github.curriculeon.utils.AnsiColor;
 import com.github.curriculeon.utils.IOConsole;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -18,12 +19,23 @@ public class NumberGuessGame implements GameInterface {
     private ArrayList<Integer> userInputs = new ArrayList<>();
     private boolean appClosed = false;
     public NumberGuessPlayer player;
+
+    List<PlayerInterface> players = new ArrayList<>();
+
     public String userName;
     public String password;
 
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
 
     public NumberGuessGame() {
+    }
+    public void add(PlayerInterface player){
+        players.add(player);
+    }
+
+    @Override
+    public void remove(PlayerInterface player) {
+players.remove(player);
     }
 
     public int getUserNumber() {
@@ -85,14 +97,7 @@ public class NumberGuessGame implements GameInterface {
         this.randomNumber = r;
         return r;
     }
-    public void add(PlayerInterface player){
-        this.player = (NumberGuessPlayer)player;
-    }
 
-    @Override
-    public void remove(PlayerInterface player) {
-
-    }
 
 
     public void run(){
