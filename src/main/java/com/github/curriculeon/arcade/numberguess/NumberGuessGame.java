@@ -29,14 +29,8 @@ public class NumberGuessGame implements GameInterface {
 
     public NumberGuessGame() {
     }
-    public void add(PlayerInterface player){
-        players.add(player);
-    }
 
-    @Override
-    public void remove(PlayerInterface player) {
-        players.remove(player);
-    }
+
 
     public int getUserNumber() {
         return userNumber;
@@ -97,6 +91,10 @@ public class NumberGuessGame implements GameInterface {
     }
 
 
+    @Override
+    public List<PlayerInterface> getPlayerList() {
+        return players;
+    }
 
     public void run(){
 
