@@ -8,15 +8,16 @@ import com.github.curriculeon.arcade.PlayerInterface;
  */
 public class SlotsPlayer implements PlayerInterface {
     ArcadeAccount arcadeAccount;
+
+    public SlotsPlayer(ArcadeAccount arcadeAccount) {
+        this.arcadeAccount=arcadeAccount;
+    }
+
     @Override
     public ArcadeAccount getArcadeAccount() {
         return arcadeAccount;
     }
 
-    @Override
-    public void setArcadeAccount(ArcadeAccount arcadeAccount) {
-        this.arcadeAccount = arcadeAccount;
-    }
 
     @Override
     public <SomeReturnType> SomeReturnType play() {

@@ -17,7 +17,6 @@ import com.github.curriculeon.utils.IOConsole;
 public class Arcade implements Runnable {
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
     private final ArcadeAccountManager arcadeAccountManager = new ArcadeAccountManager();
-   private ArcadeAccount arcadeAccount;
 
     @Override
     public void run() {
@@ -27,14 +26,14 @@ public class Arcade implements Runnable {
             if ("select-game".equals(arcadeDashBoardInput)) {
                 String accountName = console.getStringInput("Enter your account name:");
                 String accountPassword = console.getStringInput("Enter your account password:");
-                arcadeAccount = arcadeAccountManager.getAccount(accountName, accountPassword);
+                ArcadeAccount arcadeAccount = arcadeAccountManager.getAccount(accountName, accountPassword);
                 boolean isValidLogin = arcadeAccount != null;
                 if (isValidLogin) {
                     String gameSelectionInput = getGameSelectionInput().toUpperCase();
                     if (gameSelectionInput.equals("SLOTS")) {
-                        play(new SlotsGame(), new SlotsPlayer());
+                        play(new SlotsGame(), new SlotsPlayer(arcadeAccount));
                     } else if (gameSelectionInput.equals("NUMBERGUESS")) {
-                        play(new NumberGuessGame(), new NumberGuessPlayer());
+                        play(new NumberGuessGame(), new NumberGuessPlayer(arcadeAccount));
                     } else {
                         // TODO - implement better exception handling
                         String errorMessage = "[ %s ] is an invalid game selection";
@@ -79,7 +78,6 @@ public class Arcade implements Runnable {
     private void play(Object gameObject, Object playerObject) {
         GameInterface game = (GameInterface)gameObject;
         PlayerInterface player = (PlayerInterface)playerObject;
-        player.setArcadeAccount(arcadeAccount);
         game.add(player);
         game.run();
     }
@@ -89,7 +87,6 @@ public class Arcade implements Runnable {
         return "Arcade{" +
                 "console=" + console +
                 ", arcadeAccountManager=" + arcadeAccountManager +
-                ", arcadeAccount=" + arcadeAccount +
                 '}';
     }
 }
