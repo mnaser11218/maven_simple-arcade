@@ -38,14 +38,15 @@ public class Arcade implements Runnable {
                     } else {
                         // TODO - implement better exception handling
                         String errorMessage = "[ %s ] is an invalid game selection";
-                        System.out.println(String.format(errorMessage, gameSelectionInput));
+                        console.println(errorMessage, gameSelectionInput);
+
                         continue;
                        // throw new RuntimeException(String.format(errorMessage, gameSelectionInput));
                     }
                 } else {
                     // TODO - implement better exception handling
                     String errorMessage = "No account found with name of [ %s ] and password of [ %s ]";
-                    System.out.println(String.format(errorMessage, accountName,accountPassword));
+                    console.println(errorMessage, accountName,accountPassword);
                    continue;
                   //  throw new RuntimeException(String.format(errorMessage, accountPassword, accountName));
                 }
