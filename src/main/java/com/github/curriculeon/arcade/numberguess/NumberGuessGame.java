@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class NumberGuessGame implements GameInterface {
 
-    private int userNumber =0;
+    private Integer userNumber =0;
     private int randomNumber=0;
     private ArrayList<Integer> userInputs = new ArrayList<>();
     private boolean appClosed = false;
@@ -71,18 +71,16 @@ public class NumberGuessGame implements GameInterface {
     }
 
     public boolean checkIfNumberTooHighOrTooLow(){
-        Scanner scanner = new Scanner(System.in);
         this.userInputs.add(this.userNumber);
         if(this.userNumber > randomNumber){
-            System.out.println("My Number is less than " + this.userNumber);
+            console.println("My Number is less than " + this.userNumber);
             return false;
         } else if(this.userNumber < randomNumber){
-            System.out.println("My Number is greater than " + this.userNumber);
+            console.println("My Number is greater than " + this.userNumber);
             return false;
         }
-        System.out.println("Well Done ! It took you " + userInputs.size() + " amount of tries");
-        System.out.println("Would you like to play again? yes/no");
-        String userInput = scanner.nextLine();
+
+        String userInput = console.getStringInput(" Well Done ! It took you " + userInputs.size() +" amount of tries \n Would you like to play again? yes/no");
         if(userInput.equalsIgnoreCase("no")){
             this.appClosed = true;
             return true;
@@ -101,14 +99,8 @@ public class NumberGuessGame implements GameInterface {
 
 
     public void run(){
-        System.out.println("Welcome " +this.players.get(0).getArcadeAccount().getAccountName());
 
-        //implementing two players:
-
-
-        System.out.println("Welcome");
-
-        System.out.println("\u001B[33m ███▄    █  █    ██  ███▄ ▄███▓ ▄▄▄▄   ▓█████  ██▀███  \n" +
+        console.println("Welcome " +this.players.get(0).getArcadeAccount().getAccountName()   + "\n " + "\u001B[33m ███▄    █  █    ██  ███▄ ▄███▓ ▄▄▄▄   ▓█████  ██▀███  \n" +
                 " ██ ▀█   █  ██  ▓██▒▓██▒▀█▀ ██▒▓█████▄ ▓█   ▀ ▓██ ▒ ██▒\n" +
                 "▓██  ▀█ ██▒▓██  ▒██░▓██    ▓██░▒██▒ ▄██▒███   ▓██ ░▄█ ▒\n" +
                 "▓██▒  ▐▌██▒▓▓█  ░██░▒██    ▒██ ▒██░█▀  ▒▓█  ▄ ▒██▀▀█▄  \n" +
@@ -125,35 +117,16 @@ public class NumberGuessGame implements GameInterface {
                 "░▒▓███▀▒▒▒█████▓ ░▒████▒▒██████▒▒▒██████▒▒             \n" +
                 " ░▒   ▒ ░▒▓▒ ▒ ▒ ░░ ▒░ ░▒ ▒▓▒ ▒ ░▒ ▒▓▒ ▒ ░             \n" +
                 "  ░   ░ ░░▒░ ░ ░  ░ ░  ░░ ░▒  ░ ░░ ░▒  ░ ░             \n" +
-                "░ ░   ░  ░░░ ░ ░    ░   ░  ░  ░  ░  ░  ░               \n" +
+                "░ ░   ░  ░░░ ░ ░    ░   ░  ░  ░  ░  ░  ░               \n \n" +
                 "      ░    ░        ░  ░      ░        ░               ");
-//        System.out.println("Welcome, your balance is : " + myPlayerAccount.getAccountBalance());
-// TODO FINISIH TWO PLAYER GAME:
-//        int userInput = console.getIntegerInput("Click 1 for one player, or 2 for two players.");
-//        if(userInput == 2){
-//            for(CasinoAccount c:  arcadeAccountList){
-//                if(!c.getAccountName().equals(userName)) {
-//                    System.out.println("player name -> " + c.getAccountName() + " \nBalance amount: " + c.getAccountBalance());
-//                }
-//            }
-//            String userInputString = console.getStringInput("Please select user name for second player: ");
-//         // secondPlayer= arcadeAccountList.get(userInputString)
-//        }
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Select a number between 0 to 100");
+
         generateRandomNumber();
         while(!appClosed){
-            System.out.println("Please enter a number");
-            userNumber = scanner.nextInt();
+            userNumber = console.getIntegerInput("Please enter a number");
             checkIfNumberTooHighOrTooLow();
         }
 
     }
 
-
-//    @Override
-//    public void remove(PlayerInterface player) {
-//        this.player = null;
-//    }
 }
