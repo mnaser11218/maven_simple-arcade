@@ -8,14 +8,14 @@ import com.github.curriculeon.arcade.PlayerInterface;
  */
 public class NumberGuessPlayer implements PlayerInterface {
     ArcadeAccount arcadeAccount;
-    @Override
-    public ArcadeAccount getArcadeAccount() {
-        return arcadeAccount;
+
+    public NumberGuessPlayer(ArcadeAccount arcadeAccount) {
+        this.arcadeAccount=arcadeAccount;
     }
 
     @Override
-    public void setArcadeAccount(ArcadeAccount arcadeAccount) {
-        this.arcadeAccount = arcadeAccount;
+    public ArcadeAccount getArcadeAccount() {
+        return arcadeAccount;
     }
 
     @Override

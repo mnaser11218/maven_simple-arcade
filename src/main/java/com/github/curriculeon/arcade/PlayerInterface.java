@@ -11,8 +11,6 @@ public interface PlayerInterface {
      * @return the `ArcadeAccount` used to log into the `Arcade` system to play this game
      */
     ArcadeAccount getArcadeAccount();
-    public void setArcadeAccount(ArcadeAccount arcadeAccount);
-
 
 
     /**
