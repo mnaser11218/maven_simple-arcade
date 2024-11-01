@@ -16,15 +16,7 @@ public class SlotsGame implements GameInterface {
     List<PlayerInterface> players = new ArrayList<>();
     IOConsole console = new IOConsole();
 
-    @Override
-    public void add(PlayerInterface player) {
-        players.add(player);
-    }
 
-    @Override
-    public void remove(PlayerInterface player) {
-        players.remove(player);
-    }
 
 //    @Override
 //    public void run() {
@@ -231,6 +223,11 @@ public class SlotsGame implements GameInterface {
     public int stopLever() {
         stopGame = 1;
         return stopGame;
+    }
+
+    @Override
+    public List<PlayerInterface> getPlayerList() {
+        return players;
     }
 
     @Override
