@@ -1,5 +1,6 @@
 package com.github.curriculeon.arcade.numberguess;
 
+import com.github.curriculeon.arcade.AbstractGame;
 import com.github.curriculeon.arcade.GameInterface;
 import com.github.curriculeon.arcade.PlayerInterface;
 import com.github.curriculeon.utils.AnsiColor;
@@ -12,16 +13,13 @@ import java.util.Scanner;
 /**
  * Created by leon on 7/21/2020.
  */
-public class NumberGuessGame implements GameInterface {
+public class NumberGuessGame extends AbstractGame {
 
     private Integer userNumber =0;
     private int randomNumber=0;
     private ArrayList<Integer> userInputs = new ArrayList<>();
     private boolean appClosed = false;
     public NumberGuessPlayer player;
-
-    List<PlayerInterface> players = new ArrayList<>();
-
     public String userName;
     public String password;
 
@@ -91,14 +89,9 @@ public class NumberGuessGame implements GameInterface {
     }
 
 
-    @Override
-    public List<PlayerInterface> getPlayerList() {
-        return players;
-    }
-
     public void run(){
 
-        console.println("Welcome " +this.players.get(0).getArcadeAccount().getAccountName()   + "\n " + "\u001B[33m ███▄    █  █    ██  ███▄ ▄███▓ ▄▄▄▄   ▓█████  ██▀███  \n" +
+        console.println("Welcome " +this.getPlayerList().get(0).getArcadeAccount().getAccountName()   + "\n " + "\u001B[33m ███▄    █  █    ██  ███▄ ▄███▓ ▄▄▄▄   ▓█████  ██▀███  \n" +
                 " ██ ▀█   █  ██  ▓██▒▓██▒▀█▀ ██▒▓█████▄ ▓█   ▀ ▓██ ▒ ██▒\n" +
                 "▓██  ▀█ ██▒▓██  ▒██░▓██    ▓██░▒██▒ ▄██▒███   ▓██ ░▄█ ▒\n" +
                 "▓██▒  ▐▌██▒▓▓█  ░██░▒██    ▒██ ▒██░█▀  ▒▓█  ▄ ▒██▀▀█▄  \n" +
