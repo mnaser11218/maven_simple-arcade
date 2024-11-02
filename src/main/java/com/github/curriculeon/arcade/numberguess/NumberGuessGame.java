@@ -15,28 +15,14 @@ import java.util.Scanner;
  */
 public class NumberGuessGame extends AbstractGame {
 
-    private Integer userNumber =0;
     private int randomNumber=0;
-    private ArrayList<Integer> userInputs = new ArrayList<>();
     private boolean appClosed = false;
     public NumberGuessPlayer player;
-    public String userName;
-    public String password;
-
-    private final IOConsole console = new IOConsole(AnsiColor.BLUE);
-
-    public NumberGuessGame() {
-    }
+    public boolean gamerunning=true;
+    final IOConsole console = new IOConsole(AnsiColor.BLUE);
 
 
 
-    public int getUserNumber() {
-        return userNumber;
-    }
-
-    public void setUserNumber(int userNumber) {
-        this.userNumber= userNumber;
-    }
 
     public int getRandomNumber() {
         return randomNumber;
@@ -46,13 +32,6 @@ public class NumberGuessGame extends AbstractGame {
         this.randomNumber = randomNumber;
     }
 
-    public ArrayList<Integer> getUserInputs() {
-        return userInputs;
-    }
-
-    public void setUserInputs(ArrayList<Integer> userInputs) {
-        this.userInputs = userInputs;
-    }
 
     public boolean isCloseApp() {
         return appClosed;
@@ -62,22 +41,22 @@ public class NumberGuessGame extends AbstractGame {
         this.appClosed = appClosed;
     }
 
-    public boolean checkIfNumberTooHighOrTooLow(){
-        this.userInputs.add(this.userNumber);
-        if(this.userNumber > randomNumber){
-            console.println("My Number is less than " + this.userNumber);
+    public boolean checkIfNumberTooHighOrTooLow(int userNumber){
+
+        if(userNumber > randomNumber){
+            console.println("My Number is less than " + userNumber);
             return false;
-        } else if(this.userNumber < randomNumber){
-            console.println("My Number is greater than " + this.userNumber);
+        } else if(userNumber < randomNumber){
+            console.println("My Number is greater than " + userNumber);
             return false;
         }
 
-        String userInput = console.getStringInput(" Well Done ! It took you " + userInputs.size() +" amount of tries \n Would you like to play again? yes/no");
+        String userInput = console.getStringInput(" Well Done ! It took you " + 0 +" amount of tries \n Would you like to play again? yes/no");
         if(userInput.equalsIgnoreCase("no")){
-            this.appClosed = true;
+            this.gamerunning = false;
             return true;
         }
-        userInputs.clear();
+
         generateRandomNumber();
         return true;
     }
@@ -89,35 +68,22 @@ public class NumberGuessGame extends AbstractGame {
     }
 
 
-    public void run(){
-
-        console.println("Welcome " +this.getPlayerList().get(0).getArcadeAccount().getAccountName()   + "\n " + "\u001B[33m ███▄    █  █    ██  ███▄ ▄███▓ ▄▄▄▄   ▓█████  ██▀███  \n" +
-                " ██ ▀█   █  ██  ▓██▒▓██▒▀█▀ ██▒▓█████▄ ▓█   ▀ ▓██ ▒ ██▒\n" +
-                "▓██  ▀█ ██▒▓██  ▒██░▓██    ▓██░▒██▒ ▄██▒███   ▓██ ░▄█ ▒\n" +
-                "▓██▒  ▐▌██▒▓▓█  ░██░▒██    ▒██ ▒██░█▀  ▒▓█  ▄ ▒██▀▀█▄  \n" +
-                "▒██░   ▓██░▒▒█████▓ ▒██▒   ░██▒░▓█  ▀█▓░▒████▒░██▓ ▒██▒\n" +
-                "░ ▒░   ▒ ▒ ░▒▓▒ ▒ ▒ ░ ▒░   ░  ░░▒▓███▀▒░░ ▒░ ░░ ▒▓ ░▒▓░\n" +
-                "░ ░░   ░ ▒░░░▒░ ░ ░ ░  ░      ░▒░▒   ░  ░ ░  ░  ░▒ ░ ▒░\n" +
-                "   ░   ░ ░  ░░░ ░ ░ ░      ░    ░    ░    ░     ░░   ░ \n" +
-                "         ░    ░            ░    ░         ░  ░   ░     \n" +
-                "                                     ░                 \n" +
-                "  ▄████  █    ██ ▓█████   ██████   ██████              \n" +
-                " ██▒ ▀█▒ ██  ▓██▒▓█   ▀ ▒██    ▒ ▒██    ▒              \n" +
-                "▒██░▄▄▄░▓██  ▒██░▒███   ░ ▓██▄   ░ ▓██▄                \n" +
-                "░▓█  ██▓▓▓█  ░██░▒▓█  ▄   ▒   ██▒  ▒   ██▒             \n" +
-                "░▒▓███▀▒▒▒█████▓ ░▒████▒▒██████▒▒▒██████▒▒             \n" +
-                " ░▒   ▒ ░▒▓▒ ▒ ▒ ░░ ▒░ ░▒ ▒▓▒ ▒ ░▒ ▒▓▒ ▒ ░             \n" +
-                "  ░   ░ ░░▒░ ░ ░  ░ ░  ░░ ░▒  ░ ░░ ░▒  ░ ░             \n" +
-                "░ ░   ░  ░░░ ░ ░    ░   ░  ░  ░  ░  ░  ░               \n \n" +
-                "      ░    ░        ░  ░      ░        ░               ");
-
-
+    @Override
+    public void evaluatePlayer(PlayerInterface playerInterface) {
         generateRandomNumber();
-        while(!appClosed){
-            userNumber = console.getIntegerInput("Please enter a number");
-            checkIfNumberTooHighOrTooLow();
-        }
+        Integer numberGuessed= playerInterface.play();
+    while(numberGuessed != randomNumber){
 
+        checkIfNumberTooHighOrTooLow(numberGuessed);
+       numberGuessed= playerInterface.play();
+    }
+        gamerunning = false;
+        console.println("Congrats you got it in " + playerInterface.getCounter()  + " amount of tries");
+    }
+
+    @Override
+    public boolean isGameRunning() {
+        return gamerunning;
     }
 
 }
