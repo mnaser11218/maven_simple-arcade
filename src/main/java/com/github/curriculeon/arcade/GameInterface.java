@@ -30,5 +30,14 @@ public interface GameInterface extends Runnable {
     /**
      * specifies how the game will run
      */
-    void run();
+    default void run(){
+        do{
+            for(PlayerInterface playerInterface : getPlayerList())
+                evaluatePlayer(playerInterface);
+        }while(isGameRunning());
+    }
+
+    void evaluatePlayer(PlayerInterface playerInterface);
+
+    boolean isGameRunning();
 }

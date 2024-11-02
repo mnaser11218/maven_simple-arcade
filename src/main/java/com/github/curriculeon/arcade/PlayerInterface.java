@@ -19,4 +19,7 @@ public interface PlayerInterface {
      * @return whatever return value you would like
      */
     <SomeReturnType> SomeReturnType play();
+
+    public int getCounter();
+
 }

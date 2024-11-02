@@ -18,9 +18,14 @@ public class SlotsPlayer implements PlayerInterface {
         return arcadeAccount;
     }
 
-
     @Override
-    public <SomeReturnType> SomeReturnType play() {
+    public int getCounter() {
+        return 0;
+    }
+
+
+    public Integer play() {
+        System.out.println("player is playing");
         return null;
     }
 }

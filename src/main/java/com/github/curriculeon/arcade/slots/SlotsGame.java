@@ -256,4 +256,14 @@ public class SlotsGame extends AbstractGame {
             }
         }
     }
+
+    @Override
+    public void evaluatePlayer(PlayerInterface playerInterface) {
+
+    }
+
+    @Override
+    public boolean isGameRunning() {
+        return false;
+    }
 }
