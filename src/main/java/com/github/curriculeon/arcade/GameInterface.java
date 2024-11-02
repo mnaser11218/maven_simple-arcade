@@ -40,4 +40,5 @@ public interface GameInterface extends Runnable {
     void evaluatePlayer(PlayerInterface playerInterface);
 
     boolean isGameRunning();
+
 }

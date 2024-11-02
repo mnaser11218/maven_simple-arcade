@@ -15,26 +15,14 @@ import java.util.Scanner;
  */
 public class NumberGuessGame extends AbstractGame {
 
-    private Integer userNumber =0;
     private int randomNumber=0;
     private boolean appClosed = false;
     public NumberGuessPlayer player;
     public boolean gamerunning=true;
-
-    private final IOConsole console = new IOConsole(AnsiColor.BLUE);
-
-    public NumberGuessGame() {
-    }
+    final IOConsole console = new IOConsole(AnsiColor.BLUE);
 
 
 
-    public int getUserNumber() {
-        return userNumber;
-    }
-
-    public void setUserNumber(int userNumber) {
-        this.userNumber= userNumber;
-    }
 
     public int getRandomNumber() {
         return randomNumber;
@@ -54,6 +42,7 @@ public class NumberGuessGame extends AbstractGame {
     }
 
     public boolean checkIfNumberTooHighOrTooLow(int userNumber){
+
         if(userNumber > randomNumber){
             console.println("My Number is less than " + userNumber);
             return false;
