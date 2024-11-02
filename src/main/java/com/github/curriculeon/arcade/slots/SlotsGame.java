@@ -1,5 +1,6 @@
 package com.github.curriculeon.arcade.slots;
 
+import com.github.curriculeon.arcade.AbstractGame;
 import com.github.curriculeon.arcade.GameInterface;
 import com.github.curriculeon.arcade.PlayerInterface;
 import com.github.curriculeon.utils.IOConsole;
@@ -12,8 +13,7 @@ import java.util.Scanner;
 /**
  * Created by leon on 7/21/2020.
  */
-public class SlotsGame implements GameInterface {
-    List<PlayerInterface> players = new ArrayList<>();
+public class SlotsGame extends AbstractGame {
     IOConsole console = new IOConsole();
 
 
@@ -225,15 +225,12 @@ public class SlotsGame implements GameInterface {
         return stopGame;
     }
 
-    @Override
-    public List<PlayerInterface> getPlayerList() {
-        return players;
-    }
+
 
     @Override
     public void run() {
         int startGambling = 0;
-        console.println("Welcome " + this.players.get(0).getArcadeAccount().getAccountName() + "\n " +
+        console.println("Welcome " + this.getPlayerList().get(0).getArcadeAccount().getAccountName() + "\n " +
             "\u001B[0mYour Current Balance is: \u001B[32m" + userBalance + "\u001B[0m" );
         while (startGambling == 0) {
             placeWager(wagerAmount);
